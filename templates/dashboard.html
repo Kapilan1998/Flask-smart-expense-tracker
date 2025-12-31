@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Smart Expense Tracker{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <h2 class="mb-4">Dashboard</h2>
+        
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="card text-white bg-primary mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Monthly Total</h5>
+                        <h2 class="card-text">${{ "%.2f"|format(total_monthly) }}</h2>
+                        <p class="card-text">Total expenses this month</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card text-white bg-success mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Quick Actions</h5>
+                        <div class="mt-3">
+                            <a href="{{ url_for('add_expense') }}" class="btn btn-light btn-sm me-2">
+                                <i class="bi bi-plus-circle"></i> Add Expense
+                            </a>
+                            <a href="{{ url_for('categories') }}" class="btn btn-light btn-sm">
+                                <i class="bi bi-tags"></i> Manage Categories
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Category Breakdown</h5>
+            </div>
+            <div class="card-body">
+                {% if category_data %}
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Category</th>
+                                    <th>Amount</th>
+                                    <th>Percentage</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in category_data %}
+                                <tr>
+                                    <td>{{ item.name }}</td>
+                                    <td>${{ "%.2f"|format(item.total) }}</td>
+                                    <td>
+                                        <div class="progress">
+                                            {% set percentage = (item.total / total_monthly * 100) if total_monthly > 0 else 0 %}
+                                            <div class="progress-bar" role="progressbar" >
+                                                {{ "%.1f"|format(percentage) }}%
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <p class="text-muted">No expenses recorded for this month.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Recent Expenses</h5>
+            </div>
+            <div class="card-body">
+                {% if recent_expenses %}
+                    <div class="list-group">
+                        {% for expense in recent_expenses %}
+                        <div class="list-group-item">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">{{ expense.category.name }}</h6>
+                                <small>${{ "%.2f"|format(expense.amount) }}</small>
+                            </div>
+                            <p class="mb-1">{{ expense.description }}</p>
+                            <small class="text-muted">{{ expense.date.strftime('%b %d, %Y') }}</small>
+                        </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="text-muted">No recent expenses.</p>
+                {% endif %}
+            </div>
+        </div>
+
+            <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Quick Stats</h5>
+            </div>
+            <div class="card-body">
+                <p><i class="bi bi-calendar-week text-primary"></i> Current Month: {{ current_month }}</p>
+                <p><i class="bi bi-cash text-success"></i> Monthly Budget: Customize in settings</p>
+                <p><i class="bi bi-arrow-up-circle text-warning"></i> 
+                    {% if highest_category %}
+                        Highest spending: {{ highest_category.name }} category (${{ "%.2f"|format(highest_category.total) }})
+                    {% else %}
+                        Highest spending: No data yet
+                    {% endif %}
+                </p>
+            </div>
+        </div>    
+    </div>
+</div>
+{% endblock %}
