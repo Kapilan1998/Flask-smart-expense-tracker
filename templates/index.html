@@ -1,54 +1,89 @@
 {% extends "base.html" %}
 
-{% block title %}Welcome - Smart Expense Tracker{% endblock %}
+{% block title %}Smart Expense Tracker{% endblock %}
 
 {% block content %}
 <div class="row justify-content-center">
     <div class="col-md-8 text-center">
-        <div class="jumbotron bg-light p-5 rounded mt-5">
-            <h1 class="display-4">Welcome to Smart Expense Tracker</h1>
-            <p class="lead">Track your expenses easily and efficiently. Gain insights into your spending habits.</p>
-            <hr class="my-4">
-            <p>Get started by creating an account or logging in if you already have one.</p>
+        <div class="jumbotron p-5 rounded mt-5">
+            <h1 class="display-4 fw-bold mb-4 text-danger">Welcome to Smart Expense Tracker</h1>
+            <p class="lead fs-4 mb-4 fw-bolder text-primary">Track your expenses easily and efficiently. Gain insights into your spending habits.</p>
+            <hr class="my-4" style="border-color: rgba(255,255,255,0.3);">
+            <p class="fs-5 mb-4 fw-semibold text-dark">Get started by creating an account or logging in if you already have one.</p>
             <div class="mt-4">
-                <a class="btn btn-primary btn-lg mx-2" href="{{ url_for('register') }}">
-                    <i class="bi bi-person-plus"></i> Register
+                <a class="btn btn-primary btn-lg mx-2 px-4 py-3" href="{{ url_for('register') }}">
+                    <i class="bi bi-person-plus-fill me-2"></i> Register Now
                 </a>
-                <a class="btn btn-outline-primary btn-lg mx-2" href="{{ url_for('login') }}">
-                    <i class="bi bi-box-arrow-in-right"></i> Login
+                <a class="btn btn-outline-light btn-lg mx-2 px-4 py-3" href="{{ url_for('login') }}">
+                    <i class="bi bi-box-arrow-in-right me-2"></i> Login
                 </a>
             </div>
         </div>
 
         <div class="row mt-5">
-            <div class="col-md-4">
-                <div class="card text-center h-100">
-                    <div class="card-body">
-                        <i class="bi bi-graph-up display-4 text-primary"></i>
-                        <h5 class="card-title mt-3">Track Spending</h5>
-                        <p class="card-text">Monitor your expenses across different categories and time periods.</p>
+            <div class="col-md-4 mb-4">
+                <div class="card text-center h-100 border-0 shadow-lg">
+                    <div class="card-body p-4">
+                        <div class="feature-icon mb-3">
+                            <i class="bi bi-graph-up-arrow display-4" style="color: #2af598;"></i>
+                        </div>
+                        <h4 class="card-title fw-bold mb-3">Track Spending</h4>
+                        <p class="card-text text-muted">Monitor your expenses across different categories and time periods with detailed insights.</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card text-center h-100">
-                    <div class="card-body">
-                        <i class="bi bi-pie-chart display-4 text-success"></i>
-                        <h5 class="card-title mt-3">Visual Analytics</h5>
-                        <p class="card-text">Get visual insights with charts and graphs about your spending patterns.</p>
+            <div class="col-md-4 mb-4">
+                <div class="card text-center h-100 border-0 shadow-lg">
+                    <div class="card-body p-4">
+                        <div class="feature-icon mb-3">
+                            <i class="bi bi-pie-chart-fill display-4" style="color: #009efd;"></i>
+                        </div>
+                        <h4 class="card-title fw-bold mb-3">Visual Analytics</h4>
+                        <p class="card-text text-muted">Get visual insights with interactive charts and graphs about your spending patterns.</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card text-center h-100">
-                    <div class="card-body">
-                        <i class="bi bi-shield-check display-4 text-warning"></i>
-                        <h5 class="card-title mt-3">Secure & Private</h5>
-                        <p class="card-text">Your financial data is secure and accessible only to you.</p>
+            <div class="col-md-4 mb-4">
+                <div class="card text-center h-100 border-0 shadow-lg">
+                    <div class="card-body p-4">
+                        <div class="feature-icon mb-3">
+                            <i class="bi bi-shield-lock-fill display-4" style="color: #ff9e6d;"></i>
+                        </div>
+                        <h4 class="card-title fw-bold mb-3">Secure & Private</h4>
+                        <p class="card-text text-muted">Your financial data is encrypted and secure, accessible only to you with bank-level security.</p>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 </div>
+
+<!-- Add custom CSS for index page -->
+<style>
+    .feature-icon {
+        height: 100px;
+        width: 100px;
+        background: linear-gradient(135deg, rgba(42, 245, 152, 0.1) 0%, rgba(0, 158, 253, 0.1) 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+    }
+    
+    .jumbotron {
+        background: linear-gradient(135deg, #2af598 0%, #009efd 100%);
+        color: white;
+        box-shadow: 0 10px 30px rgba(42, 245, 152, 0.2);
+    }
+    
+    .card {
+        transition: transform 0.3s ease;
+    }
+    
+    .card:hover {
+        transform: translateY(-5px);
+    }
+</style>
 {% endblock %}
