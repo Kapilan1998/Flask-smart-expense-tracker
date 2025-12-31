@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}{{ 'Edit' if expense else 'Add' }} Expense - Smart Expense Tracker{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">
+                    <i class="bi bi-{{ 'pencil' if expense else 'plus' }}-circle"></i>
+                    {{ 'Edit' if expense else 'Add' }} Expense
+                </h4>
+            </div>
+            <div class="card-body">
+                <form method="POST"
+                    action="{{ url_for('edit_expense', id=expense.id) if expense else url_for('add_expense') }}">
+                    <div class="mb-3">
+                        <label for="amount" class="form-label">Amount ($)</label>
+                        <input type="number" class="form-control" id="amount" name="amount" step="0.01" min="0"
+                            value="{{ expense.amount if expense else '' }}" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description (Optional)</label>
+                        <input type="text" class="form-control" id="description" name="description"
+                            value="{{ expense.description if expense else '' }}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="date" class="form-label">Date</label>
+                        <input type="date" class="form-control" id="date" name="date"
+                            value="{{ expense.date.strftime('%Y-%m-%d') if expense else today.strftime('%Y-%m-%d') }}"
+                            required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="category_id" class="form-label">Category</label>
+                        <select class="form-select" id="category_id" name="category_id" required>
+                            <option value="">Select a category</option>
+                            {% for category in categories %}
+                            <option value="{{ category.id }}" {% if expense and expense.category_id==category.id
+                                %}selected{% endif %}>
+                                {{ category.name }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-{{ 'check' if expense else 'plus' }}-circle"></i>
+                            {{ 'Update' if expense else 'Add' }} Expense
+                        </button>
+                        <a href="{{ url_for('expenses') }}" class="btn btn-outline-secondary">
+                            Cancel
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
