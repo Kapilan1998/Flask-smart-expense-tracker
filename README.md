@@ -86,7 +86,9 @@ python app.py
 http://localhost:5000/
 ```
 
-### Dashboard
+---
+
+### Screenshots of working application
 
 ![Dashboard images](./images/dashboard.png)
 
@@ -111,5 +113,17 @@ http://localhost:5000/
 ![Delete expense](./images/delete-expense.png)
 
 ![Overall view](./images/over-all-view.png)
+
+---
+
+### Screenshots of working database (DB Browser for SQLite)
+
+![Open database](./images/open%20database.png)
+
+![Select the database file](./images/select%20this%20database.png)
+
+![View data inside a table](./images/view%20data.png)
+
+![Switching tables inside database](./images/switching%20to%20diffrent%20tables.png)
 
 ---
