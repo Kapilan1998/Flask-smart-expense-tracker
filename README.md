@@ -88,6 +88,28 @@ http://localhost:5000/
 
 ### Dashboard
 
-![Patient QR Process Flow](./images/dashboard.png)
+![Dashboard images](./images/dashboard.png)
+
+![Create account](./images/register-account.png)
+
+![Login to account](./images/login.png)
+
+![Logined user view](./images/logged-in-user-view.png)
+
+![Expense adding](./images/enter%20first%20expense.png)
+
+![Adding expense](./images/creating-expense-1.png)
+
+![First expense added](./images/first%20expense%20added.png)
+
+![Update expense](./images/update-expense-1.png)
+
+![Category adding](./images/add-category-1.png)
+
+![Category added](./images/category-added-1.png)
+
+![Delete expense](./images/delete-expense.png)
+
+![Overall view](./images/over-all-view.png)
 
 ---
